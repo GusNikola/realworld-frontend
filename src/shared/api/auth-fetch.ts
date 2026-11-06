@@ -64,6 +64,8 @@ export async function apiFetch<T>(url: string, options: RequestInit = {}) {
 
   requestUrl.protocol = apiUrl.protocol;
   requestUrl.host = apiUrl.host;
+  // Setting host does not clear a port that is not in the new host.
+  requestUrl.port = apiUrl.port;
 
   const response = await fetch(requestUrl.toString(), {
     ...options,
